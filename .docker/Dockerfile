@@ -1,5 +1,6 @@
 FROM python:3.11-slim
 WORKDIR /app
-COPY . .
-RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
-CMD ["python", "--version"]
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY src ./src
+CMD ["python", "-m", "src.train"]
